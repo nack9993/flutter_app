@@ -16,9 +16,6 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Firestore Demo'),
-      ),
       body: StreamBuilder(
         stream: _testCollection.snapshots(),
         builder: (context, snapshot) {
@@ -38,14 +35,16 @@ class _MyHomePageState extends State<MyHomePage> {
                     itemBuilder: (context, index) {
                       final document = data[index];
                       final docData = document.data() as Map<String, dynamic>;
-                  
+
                       return ListTile(
                         subtitle: Text(docData['message'] ?? 'No other field'),
                       );
                     },
                   ),
                 ),
-                ElevatedButton(onPressed: _addData, child: const Text('Add Data to Firestore')),
+                ElevatedButton(
+                    onPressed: _addData,
+                    child: const Text('Add Data to Firestore')),
               ],
             ),
           );
